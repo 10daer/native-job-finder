@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { View, ScrollView, SafeAreaView } from "react-native";
 import { Stack, useRouter } from "expo-router";
+import styles from "../styles/search";
 
 import { COLORS, images, SIZES } from "../constants/index";
 
@@ -25,6 +26,13 @@ const Home = () => {
           headerShadowVisible: false,
           headerRight: () => (
             <ScreenHeaderBtn iconUrl={images.profile} dimensions="100%" />
+          ),
+          headerLeft: () => (
+            <View style={styles.dashesContainer}>
+              <View style={styles.dash}></View>
+              <View style={styles.dash}></View>
+              <View style={styles.dash}></View>
+            </View>
           ),
           headerTitle: "",
         }}

@@ -59,6 +59,18 @@ const styles = StyleSheet.create({
     fontSize: SIZES.medium,
     color: COLORS.primary,
   },
+  dashesContainer: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: 20,
+    paddingLeft: 10,
+  },
+  dash: {
+    width: 20,
+    height: 2,
+    backgroundColor: "black",
+    marginVertical: 2,
+  },
 });
 
 export default styles;

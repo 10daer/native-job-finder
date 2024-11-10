@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-// import { RAPID_API_KEY } from "../config.env";
-// const rapidKey = RAPID_API_KEY;
 
 const useFetch = (endpoint, query) => {
   const [data, setData] = useState([]);
@@ -22,8 +20,7 @@ const useFetch = (endpoint, query) => {
     setIsLoading(true);
     try {
       const res = await axios.request(options);
-      setData(res.data.data);
-      // setIsLoading(false);
+      setData((data) => res.data.data);
     } catch (error) {
       setError(error);
     } finally {
@@ -31,46 +28,11 @@ const useFetch = (endpoint, query) => {
     }
   };
 
-  // const fetchData = async () => {
-  //   setIsLoading(true);
-  //   try {
-  //     const response = await fetch("http://localhost:8000/data");
-  //     const res = await response.json();
-  //     setData(res);
-  //     // setIsLoading(false);
-  //   } catch (error) {
-  //     setError(error);
-  //     alert("There is an error");
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
-
-  // const fetchOneData = async () => {
-  //   setIsLoading(true);
-  //   try {
-  //     const response = await fetch("http://localhost:8000/data");
-  //     const res = await response.json();
-  //     setData((data) => res.find((el) => el.job_id === query.job_id));
-  //     // setIsLoading(false);
-  //   } catch (error) {
-  //     setError(error);
-  //     alert("There is an error");
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
-
   useEffect(() => {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   query.job_id ? fetchOneData() : fetchData();
-  // }, []);
-
   const refetch = () => {
-    // setIsLoading(true);
     fetchData();
   };
 

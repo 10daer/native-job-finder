@@ -42,13 +42,15 @@ const JobDetails = () => {
   function displayTabContent(activeTab) {
     switch (activeTab) {
       case "Abouts":
-        return <JobAbout info={data.job_description ?? "No data provided"} />;
+        return (
+          <JobAbout info={data[0].job_description ?? "No data provided"} />
+        );
 
       case "Qualifications":
         return (
           <Specifics
             title="Qualifications"
-            points={data.job_highlights?.Qualifications ?? ["N / A"]}
+            points={data[0].job_highlights?.Qualifications ?? ["N / A"]}
           />
         );
 
@@ -56,7 +58,7 @@ const JobDetails = () => {
         return (
           <Specifics
             title="Descriptions"
-            points={data.job_highlights?.Responsibilities ?? ["N / A"]}
+            points={data[0].job_highlights?.Responsibilities ?? ["N / A"]}
           />
         );
 
@@ -77,11 +79,14 @@ const JobDetails = () => {
             <ScreenHeaderBtn
               iconUrl={icons.left}
               dimensions="60%"
-              handlePress={() => router.back()}
+              handlePress={() => router.back() || router.navigate("/")}
             />
           ),
           headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.share} dimensions="60%" />
+            <ScreenHeaderBtn
+              iconUrl={data[0]?.employer_logo}
+              dimensions="60%"
+            />
           ),
         }}
       ></Stack.Screen>
@@ -102,10 +107,10 @@ const JobDetails = () => {
           ) : (
             <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
               <Company
-                companyLogo={data.employer_logo}
-                jobtitle={data.job_title}
-                companyName={data.employer_name}
-                location={data.job_country}
+                companyLogo={data[0]?.employer_logo}
+                jobtitle={data[0].job_title}
+                companyName={data[0].employer_name}
+                location={data[0].job_country}
               />
               <JobTabs
                 tabs={tabs}
@@ -114,7 +119,7 @@ const JobDetails = () => {
               />
 
               {displayTabContent(activeTab)}
-              <JobFooter url={data.job_apply_link} />
+              <JobFooter url={data[0].job_apply_link} />
             </View>
           )}
         </ScrollView>

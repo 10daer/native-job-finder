@@ -5,12 +5,13 @@ import { images } from "../../../../constants";
 import { checkImageURL } from "../../../../utils";
 
 const NearbyJobCard = ({ job, handleNavigate }) => {
+  console.log(job.employer_logo);
   return (
     <TouchableOpacity style={styles.container} onPress={handleNavigate}>
       <TouchableOpacity style={styles.logoContainer}>
         <Image
-          // source={{ url: checkImageURL(job.employer_logo)}}
-          source={images.profile}
+          source={{ url: checkImageURL(job?.employer_logo) }}
+          // source={images.profile}
           resizeMode="contain"
           style={styles.logImage}
         />
